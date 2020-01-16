@@ -17,8 +17,7 @@ router.get('/advanced/:id', (req, res) => {
     let data = JSON.parse(req.params.id);
     Search
         .findAdvancedQuery(data)
-        .then(profiles => {
- 
+        .then(profiles => {       
             res.json(profiles);
         })
         .catch(err => console.log('error from simple query', err));

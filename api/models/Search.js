@@ -5,17 +5,19 @@ const Search= {
     // get all by query
     findQuery: (query)=>db.query(`SELECT * FROM profile WHERE name LIKE '%${query}%' OR 'role_type' ILIKE '%${query}%' OR production LIKE '%${query}%'`),
     findAdvancedQuery:(queries)=>{
+
+       // if profiles return 0 make another request and show ppl within the range
+      //  if credit is writers or directors, and age don't return make another request 
         const {credit,gender,country, age} = queries
-       
         let sql = 'SELECT * FROM profile WHERE 1 = 1 ';
     
-        if (credit !== '') {
+        if (credit !== undefined && credit !== '') { 
           sql += `AND credit ='${credit}'` ;
         }
-        if (gender !== undefined) {
+        if (gender !== undefined && gender !== '') {
           sql +=  `AND gender ='${gender}'` ;
         }
-        if (country !== '') {
+        if (country !== undefined &&country !== '') {
           sql +=  `AND country ='${country}'` ;
         }
         // this should be age && 

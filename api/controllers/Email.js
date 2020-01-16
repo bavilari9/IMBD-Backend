@@ -6,8 +6,8 @@ const router = require('express').Router(),
         .post(sendStaffContactEmail, sendConfirmation)  
 
         router.route('/verify')
-        .post(sendVerifyEmail)  
-        // .post(sendVerifyEmail, sendConfirmation)  
+        // .post(sendVerifyEmail)  
+        .post(sendVerifyEmail, sendConfirmation)  
 
 module.exports = router;
  

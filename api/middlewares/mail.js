@@ -19,8 +19,8 @@ function sendStaffContactEmail (req, res,next) {
     };
     mg.messages().send(data, function (error, body) {
         if(error){
-            console.log("Error on mailgun contact email ", error)
-            // res.send(error)
+            console.log("Error on mailgun contact email", error)
+            return next(500)
         }else{
             console.log("email sent successfully", body)
             return next()
@@ -31,39 +31,46 @@ function sendStaffContactEmail (req, res,next) {
     let {talentName, contactName, email, phoneNumber, bio, socialMediaLink} = req.body
     console.log("message received", talentName)
     const data = {
-        from: `${email}`,
+        from:"Mailgun Sandbox <postmaster@sandboxc404973b20024fa383a2f2bfa3b3fe8b.mailgun.org>",
         to: email,
         subject: "IMDB Profile Verification",
         template: "verify",
-        "h:X-Mailgun-Variables": `{"name": "${talentName}","contactName": "${contactName}","PhoneNumber": "${phoneNumber}","bio": "${bio}","socialMediaLink": "${socialMediaLink}"}`
+        "h:X-Mailgun-Variables": `{"contactName": "${contactName}","name": "${talentName}"}`
     };
+    mg.messages().send(data, function (error, body) {
+        if(!error){
+            console.log("email sent successfully", body)
+            return next()
+        }else{
+            console.log("there was an error sending verification email", error)
 
-    console.log("data sending", data)
-    // mg.messages().send(data, function (error, body) {
-    //     if(error){
-    //         console.log("Error on mailgun contact email ", error)
-    //         // res.send(error)
-    //     }else{
-    //         console.log("email sent successfully", body)
-    //         return next()
-    //     } 
-    // });
+            return next(500)
+            
+        } 
+    });
   }
 
-  function sendConfirmation (req, res) {
+  function sendConfirmation (req, res,next) {
       console.log('this is after sent ',req.body)
     let {name, email} = req.body
     const data = {
-        from: "Mailgun Sandbox <postmaster@sandboxc404973b20024fa383a2f2bfa3b3fe8b.mailgun.org>",
-        to: email,
+        from:"Mailgun Sandbox <postmaster@sandboxc404973b20024fa383a2f2bfa3b3fe8b.mailgun.org>",
+        to:email,
         subject: "IMDB LAT Welcome",
         template: "contact",
         "h:X-Mailgun-Variables": `{"name": "${name}"}`
     };
     mg.messages().send(data, function (error, body) {
-        console.log(body);
-        res.send(body)
-    });
+
+        if(error){
+            console.log("Error on mailgun confirmation contact email ", error)
+           return next(500)
+        }else{
+            console.log("email sent successfully to user", body)
+            res.send(body)
+        } 
+       
+    })
   }
 
 module.exports = {
