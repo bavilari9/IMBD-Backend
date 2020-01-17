@@ -27,6 +27,7 @@ function sendStaffContactEmail (req, res,next) {
         } 
     });
   }
+  // send verification to The Source
   function sendVerifyEmail (req, res,next) {
     let {talentName, contactName, email, phoneNumber, bio, socialMediaLink} = req.body
     console.log("message received", talentName)
@@ -49,6 +50,8 @@ function sendStaffContactEmail (req, res,next) {
         } 
     });
   }
+
+  
 
   function sendConfirmation (req, res,next) {
       console.log('this is after sent ',req.body)
