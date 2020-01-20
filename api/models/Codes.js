@@ -7,4 +7,4 @@ const bcrypt = require('bcryptjs'),
         return db.query(`SELECT * FROM codes WHERE code =${code}`);
       }
     }
-    export default Codes;
+    module.exports = Codes;

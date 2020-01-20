@@ -15,3 +15,5 @@ const Codes = require ('../models/Codes'),
                  console.log('Profile Get Controller Index Error', err)
                 })
             })
+
+module.exports = router;
