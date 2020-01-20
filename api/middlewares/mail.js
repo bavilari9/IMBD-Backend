@@ -3,6 +3,7 @@ const  dotenv = require('dotenv').config()
 
 const DOMAIN = process.env.MAILGUN_DOMAIN 
 const APIKEY = process.env.MAILGUN_API_KEY 
+const SANDBOX_URL = process.env.SANDBOX_URL
 const mg = mailgun({apiKey: APIKEY, domain: DOMAIN});
 
 
@@ -29,14 +30,16 @@ function sendStaffContactEmail (req, res,next) {
   }
   // send verification to The Source
   function sendVerifyEmail (req, res,next) {
-    let {talentName, contactName, email, phoneNumber, bio, socialMediaLink} = req.body
-    console.log("message received", talentName)
+
+
+    let {talentName, name, email, phoneNumber, bio, socialMediaLink} = req.body
+    console.log("verification email", name)
     const data = {
-        from:"Mailgun Sandbox <postmaster@sandboxc404973b20024fa383a2f2bfa3b3fe8b.mailgun.org>",
+        from:`Mailgun Sandbox ${SANDBOX_URL}`, 
         to: email,
         subject: "IMDB Profile Verification",
         template: "verify",
-        "h:X-Mailgun-Variables": `{"contactName": "${contactName}","name": "${talentName}"}`
+        "h:X-Mailgun-Variables": `{"name": "${name}","name": "${talentName}","phoneNumber": "${phoneNumber}","socialMediaLink": "${socialMediaLink}", "bio": "${bio}"}`
     };
     mg.messages().send(data, function (error, body) {
         if(!error){
@@ -57,7 +60,7 @@ function sendStaffContactEmail (req, res,next) {
       console.log('this is after sent ',req.body)
     let {name, email} = req.body
     const data = {
-        from:"Mailgun Sandbox <postmaster@sandboxc404973b20024fa383a2f2bfa3b3fe8b.mailgun.org>",
+        from:`Mailgun Sandbox ${SANDBOX_URL}`,
         to:email,
         subject: "IMDB LAT Welcome",
         template: "contact",
