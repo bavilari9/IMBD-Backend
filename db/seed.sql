@@ -1,38 +1,49 @@
-DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE  IF EXISTS profile CASCADE; 
-DROP TYPE IF EXISTS gender_type;
-DROP TYPE IF EXISTS season_type;
-DROP TYPE IF EXISTS role_type;
-DROP TYPE IF EXISTS profile_type;
+-- DROP TABLE IF EXISTS users CASCADE;
+-- DROP TABLE  IF EXISTS profile CASCADE; 
+-- DROP TYPE IF EXISTS gender_type;
+-- DROP TYPE IF EXISTS season_type;
+-- DROP TYPE IF EXISTS role_type;
+-- DROP TYPE IF EXISTS profile_type;
+DROP TABLE IF EXISTS code CASCADE;
 
-CREATE TABLE users(
-id BIGSERIAL PRIMARY KEY,
-name VARCHAR NOT NULL, 
-email VARCHAR NOT NULL UNIQUE,
-password_digest VARCHAR NOT NULL,
-token VARCHAR NOT NULL
-);
+-- CREATE TABLE users(
+-- id BIGSERIAL PRIMARY KEY,
+-- name VARCHAR NOT NULL, 
+-- email VARCHAR NOT NULL UNIQUE,
+-- password_digest VARCHAR NOT NULL,
+-- token VARCHAR NOT NULL
+-- );
 
-CREATE TYPE gender_type AS ENUM  ('female','male','non-binary');
-CREATE TYPE profile_type AS ENUM  ('true','false');
-CREATE TYPE season_type AS ENUM ('winter','spring','summer','fall');
-CREATE TYPE role_type AS ENUM ('acting','directing','writing','showrunning');
+-- CREATE TYPE gender_type AS ENUM  ('female','male','non-binary');
+-- CREATE TYPE profile_type AS ENUM  ('true','false');
+-- CREATE TYPE season_type AS ENUM ('winter','spring','summer','fall');
+-- CREATE TYPE role_type AS ENUM ('acting','directing','writing','showrunning');
 
-SET datestyle = "ISO, DMY";
-CREATE TABLE profile(
-id BIGSERIAL PRIMARY KEY, 
--- user_id INT REFERENCES users(id),
-name VARCHAR NOT NULL,
-gender gender_type,
-dob DATE  DEFAULT CURRENT_DATE,
-production VARCHAR(255),
-network VARCHAR(255),
-season season_type,
-country VARCHAR NOT NULL,  
-credit role_type, 
-imdb_link VARCHAR(255),
-main_profile profile_type
-);
+-- SET datestyle = "ISO, DMY";
+-- CREATE TABLE profile(
+-- id BIGSERIAL PRIMARY KEY, 
+-- -- user_id INT REFERENCES users(id),
+-- name VARCHAR NOT NULL,
+-- gender gender_type,
+-- dob DATE  DEFAULT CURRENT_DATE,
+-- production VARCHAR(255),
+-- network VARCHAR(255),
+-- season season_type,
+-- country VARCHAR NOT NULL,  
+-- credit role_type, 
+-- imdb_link VARCHAR(255),
+-- main_profile profile_type
+-- );
+
+
+-- CREATE TABLE codes(
+-- id BIGSERIAL PRIMARY KEY,
+-- code_name VARCHAR NOT NULL, 
+-- code VARCHAR NOT NULL UNIQUE
+-- );
+
+-- INSERT INTO codes (code_name, code)
+-- VALUES('EARLY-ACCESS', '1234'),('EARLY-ACCESS', 'GQR456');
 
 -- ACTORS WITH DOB
 -- INSERT INTO profile (name,production,network,season,imdb_link,country,dob,gender, main_profile,credit)

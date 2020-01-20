@@ -32,7 +32,8 @@ app.use(Auth.authenticate);
 app.use('/users', require('./api/controllers/User'));
 app.use('/profile', require('./api/controllers/Profile'));
 app.use('/search', require('./api/controllers/Search'));
-app.use('/email', require('./api/controllers/Email'))
+app.use('/email', require('./api/controllers/Email'));
+app.use('/codes', require('./api/controllers/Codes'))
 app.use('/login', require('./api/controllers/sessions'));
 
 
