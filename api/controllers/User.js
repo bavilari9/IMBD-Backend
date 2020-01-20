@@ -6,6 +6,7 @@ const User = require( '../models/User'),
 	  Auth = require('../../services/auth');
 
 router.get('/validate',Auth.restrict, ( req, res)=>{
+	console.log("token ", req)
 	res.json({
 		name: req.user.name, 
 		email: req.user.email,
