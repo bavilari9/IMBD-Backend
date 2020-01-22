@@ -7,20 +7,19 @@ const Profile = require ('../models/Profile'),
    
         // // multerUploads = require('../../middleware/multer'),
         // // dataUri = require('../../middleware/multer'
-router.post('/',upload.single('photo'),(req, res)=>{    
-    
+router.post('/',upload.single('imgLink'),(req, res)=>{    
     console.log('req.file :', req.file);
-
     // var imageDetails = {
     //     imageName: req.body.imageName,
     //     cloudImage: req.files[0].path,
     //     imageId: ''
     //     }
-
-    self.uploads(req.body.imgLink).then((result) => {
+    self.uploads(req.file).then((result) => {
        console.log("result ", result )
+        }).catch((e)=>{
+            console.log("error", e)
         })
-
+})
     // if(req.file) {
     //     const file = dataUri(req).content;
     //     return uploader.upload(file).then((result) => {
@@ -67,7 +66,7 @@ router.post('/',upload.single('photo'),(req, res)=>{
     //     res.status(400).json({errors: errors})
     // }
 
-})
+
 router.get('/', (req, res) => {
        Profile
           .findAll()

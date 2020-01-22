@@ -12,10 +12,10 @@ var self = module.exports = {
     
 uploads:(file) => {
   return new Promise(resolve => {
-    cloudinary.uploader.upload(
-      file,
+    cloudinary.uploader.upload_stream(
+      file.data,
       result => {
-        resolve({ url: result.url, id: result.public_id });
+        resolve({ result});
       },
       { resource_type: "auto" }
     );

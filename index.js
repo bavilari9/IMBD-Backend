@@ -10,8 +10,8 @@ const logger = require('morgan');
 
 
 
-// cross origin request 
-app.use(cors());
+// // cross origin request 
+// app.use(cors());
 
 // views engine 
 app.engine('html', mustacheExpress());
