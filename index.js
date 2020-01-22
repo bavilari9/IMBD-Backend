@@ -3,11 +3,10 @@ const app = express();
 const mustacheExpress = require('mustache-express');
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8080
-const cors = require('cors');
 const Auth = require('./services/auth')
 const logger = require('morgan');
 var cookieParser = require('cookie-parser')
-
+const  dotenv = require('dotenv').config()
 // views engine 
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
@@ -23,7 +22,7 @@ app.use(bodyParser.json());
 app.use(logger('dev'));
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
-    res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.set('Access-Control-Allow-Origin', `${process.env.URL}`);
     // Request methods you wish to allow
     res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     // Request headers you wish to allow
