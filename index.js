@@ -11,7 +11,6 @@ var cookieParser = require('cookie-parser')
 
 // cross origin request 
 // app.use(cors());
-
 // views engine 
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
