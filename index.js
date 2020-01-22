@@ -10,7 +10,7 @@ var cookieParser = require('cookie-parser')
 
 
 // cross origin request 
-app.use(cors());
+// app.use(cors());
 
 // views engine 
 app.engine('html', mustacheExpress());
@@ -31,19 +31,19 @@ app.use(logger('dev'));
     
 //     next();
 // });
-// app.use(function (req, res, next) {
-//     // Website you wish to allow to connect
-//     res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
-//     // Request methods you wish to allow
-//     res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//     // Request headers you wish to allow
-//     res.set('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-//     // Set to true if you need the website to include cookies in the requests sent
-//     // to the API (e.g. in case you use sessions)
-//     res.set('Access-Control-Allow-Credentials', true);
-//     // Pass to next layer of middleware
-//     next();
-// });
+app.use(function (req, res, next) {
+    // Website you wish to allow to connect
+    res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+    // Request methods you wish to allow
+    res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    // Request headers you wish to allow
+    res.set('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.set('Access-Control-Allow-Credentials', true);
+    // Pass to next layer of middleware
+    next();
+});
 
 
 // before all routes, use the middleware we define in Auth to get the
