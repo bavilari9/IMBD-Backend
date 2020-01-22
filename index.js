@@ -8,6 +8,8 @@ const Auth = require('./services/auth')
 const logger = require('morgan');
 
 
+
+
 // cross origin request 
 app.use(cors());
 
@@ -23,6 +25,7 @@ app.use(bodyParser.json());
 
 // logger to see whats going on
 app.use(logger('dev'));
+// app.use('', cloudinaryConfig);
 
 // before all routes, use the middleware we define in Auth to get the
 // current user, or i can put it directy when requiring the controller 
