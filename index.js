@@ -21,12 +21,6 @@ app.use(bodyParser.json());
 
 // logger to see whats going on
 app.use(logger('dev'));
-
-// app.use('/', (req,res, next) => {
-//     console.log("test", req.cookies);
-    
-//     next();
-// });
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
     res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
