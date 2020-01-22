@@ -5,7 +5,7 @@ router = require('express').Router()
 
 router.get('/checkCode', (req, res) => {
   console.log("cookies", req.cookies)
-  // res.clearCookie('early-access-code');
+  // res.clearCookie('early-access-code'); 
   res.json({
     exists: Boolean(req.cookies && req.cookies['early-access-code'])
   });
