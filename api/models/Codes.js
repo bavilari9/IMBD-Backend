@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs'),
       const Codes= {
       findCode:(code)=>{
             // request code that it's equal 
-        return db.query(`SELECT * FROM codes WHERE code =${code}`);
+        return db.query(`SELECT * FROM codes WHERE code ='${code}'`);
       }
     }
     module.exports = Codes;
