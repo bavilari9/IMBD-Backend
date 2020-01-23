@@ -4,17 +4,16 @@ const  dotenv = require('dotenv').config()
 const DOMAIN = process.env.MAILGUN_DOMAIN 
 const APIKEY = process.env.MAILGUN_API_KEY 
 const SANDBOX_URL = process.env.SANDBOX_URL
+const DESTINATARY = process.env.DESTINATARY
 const mg = mailgun({apiKey: APIKEY, domain: DOMAIN});
 
-
-// const mailer = require('../../lib/mailer')
-
+// staf contact form
 function sendStaffContactEmail (req, res,next) {
    
     let {email ,message} = req.body
     const data = {
         from: `${email}`,
-        to: `bianca@helloiconic.com`,
+        to: `${DESTINATARY}`,
         subject: 'Contact',
         text: `${message}`
     };
@@ -28,10 +27,8 @@ function sendStaffContactEmail (req, res,next) {
         } 
     });
   }
-  // send verification to The Source
+  //Profile verification of talent profile
   function sendVerifyEmail (req, res,next) {
-
-
     let {talentName, name, email, phoneNumber, bio, socialMediaLink} = req.body
     console.log("verification email", name)
     const data = {
@@ -55,7 +52,7 @@ function sendStaffContactEmail (req, res,next) {
   }
 
   
-
+//   confirmation email after contact /verification email is sent 
   function sendConfirmation (req, res,next) {
       console.log('this is after sent ',req.body)
     let {name, email} = req.body
