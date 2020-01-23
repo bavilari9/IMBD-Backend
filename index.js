@@ -50,5 +50,5 @@ app.use('/codes', require('./api/controllers/Codes'))
 app.use('/login', require('./api/controllers/sessions'));
 
 
-app.listen(PORT, ()=> console.log('Server listening on port ❤ 💩', PORT))
+app.listen(PORT, ()=> console.log('Server listening on port ❤', PORT))
 
