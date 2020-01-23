@@ -1,4 +1,6 @@
-const cloudinary = require("cloudinary").v2
+
+const cloudinary = require("cloudinary");
+
 const  dotenv = require('dotenv').config()
 
 cloudinary.config({
@@ -11,9 +13,8 @@ cloudinary.config({
 var self = module.exports = {
     
 uploads:(file) => {
-  console.log("FILE FROM UPLOAD ", file )
   return new Promise(resolve => {
-    cloudinary.uploader.upload_stream(
+    cloudinary.uploader.upload(
       file,
       result => {
         resolve({ result});

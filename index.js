@@ -5,8 +5,10 @@ const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8080
 const Auth = require('./services/auth')
 const logger = require('morgan');
+
 var cookieParser = require('cookie-parser')
 const  dotenv = require('dotenv').config()
+
 // views engine 
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
@@ -20,6 +22,7 @@ app.use(bodyParser.json());
 
 // logger to see whats going on
 app.use(logger('dev'));
+
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
     res.set('Access-Control-Allow-Origin', `${process.env.URL}`);
@@ -33,7 +36,6 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
-
 
 // before all routes, use the middleware we define in Auth to get the
 // current user, or i can put it directy when requiring the controller 

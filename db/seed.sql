@@ -4,7 +4,7 @@
 -- DROP TYPE IF EXISTS season_type;
 -- DROP TYPE IF EXISTS role_type;
 -- DROP TYPE IF EXISTS profile_type;
-DROP TABLE IF EXISTS code CASCADE;
+-- DROP TABLE IF EXISTS code CASCADE;
 
 -- CREATE TABLE users(
 -- id BIGSERIAL PRIMARY KEY,
@@ -32,6 +32,7 @@ DROP TABLE IF EXISTS code CASCADE;
 -- country VARCHAR NOT NULL,  
 -- credit role_type, 
 -- imdb_link VARCHAR(255),
+-- imgLink VARCHAR(255),
 -- main_profile profile_type
 -- );
 
