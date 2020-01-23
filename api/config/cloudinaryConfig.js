@@ -12,8 +12,8 @@ var self = module.exports = {
     
 uploads:(file) => {
   return new Promise(resolve => {
-    cloudinary.uploader.upload_stream(
-      file.data,
+    cloudinary.uploader.upload(
+      file,
       result => {
         resolve({ result});
       },
